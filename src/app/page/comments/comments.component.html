@@ -1,0 +1,55 @@
+<form [formGroup]="commentForm" class="container mt-5 pt-5" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input class="form-control" formControlName="name" type="text" name="name">
+    </div>
+    
+    <div class="form-group">
+        <label for="body">Body</label>
+        <input class="form-control" formControlName="body" type="text" name="body">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" formControlName="email" type="text" name="email">
+    </div>
+
+    <div class="form-group">
+        <label for="postId">postId</label>
+        <input class="form-control" formControlName="postId" type="number" name="postId">
+    </div>
+    <div class="col button-holder d-flex justify-content-center align-items-center mt-4">
+      <button type="submit" name="submit" class="btn btn-success">Dodaj</button>
+    </div>
+</form>
+
+<!-- table deo -->
+
+<div class="container mt-6 pt-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Post id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Body</th>
+          <th scope="col">Email</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of comments; index as i;">
+            <th scope="row">{{comment.id}}</th>
+            <th>{{comment.postId}}</th>
+            <td>{{comment.name}}</td>
+            <td>{{comment.body}}</td>
+            <td>{{comment.email}}</td>
+          <td>
+            <a  [routerLink]="['/comments', comment.id]" class="btn btn-primary">Read comment</a>
+          </td>
+          <td>
+              <button (click)="deleteComment(comment.id)" type="button" class="btn btn-danger">Delete comment</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
